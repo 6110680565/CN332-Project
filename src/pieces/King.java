@@ -19,20 +19,16 @@ public class King extends Piece{
 	}
 	
 	//general value access functions
-	public void setx(int x)
-	{
+	public void setx(int x){
 		this.x=x;
 	}
-	public void sety(int y)
-	{
+	public void sety(int y){
 		this.y=y;
 	}
-	public int getx()
-	{
+	public int getx(){
 		return x;
 	}
-	public int gety()
-	{
+	public int gety(){
 		return y;
 	}
 	//Move Function for King Overridden from Pieces

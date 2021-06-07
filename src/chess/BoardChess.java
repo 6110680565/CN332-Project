@@ -21,91 +21,80 @@ import pieces.Rook;
  * @author Acer
  */
 public class BoardChess {
-	public static Rook wr01,wr02,br01,br02;
-	public static Knight wk01,wk02,bk01,bk02;
-	public static Bishop wb01,wb02,bb01,bb02;
-	public static Pawn wp[],bp[];
-	public static Queen wq,bq;
-	public static King wk,bk;
+    
         public static Cell boardState[][];
+        public static AllPiece white;
+        public static AllPiece black;
+        
 	//public ArrayList<Cell> destinationlist = new ArrayList<Cell>();
     public static  void makeBoardChess() {
-        wr01=new Rook("WR01","White_Rook.png",0);
-	wr02=new Rook("WR02","White_Rook.png",0);
-	br01=new Rook("BR01","Black_Rook.png",1);
-	br02=new Rook("BR02","Black_Rook.png",1);
-	wk01=new Knight("WK01","White_Knight.png",0);
-	wk02=new Knight("WK02","White_Knight.png",0);
-	bk01=new Knight("BK01","Black_Knight.png",1);
-	bk02=new Knight("BK02","Black_Knight.png",1);
-	wb01=new Bishop("WB01","White_Bishop.png",0);
-	wb02=new Bishop("WB02","White_Bishop.png",0);
-	bb01=new Bishop("BB01","Black_Bishop.png",1);
-	bb02=new Bishop("BB02","Black_Bishop.png",1);
-	wq=new Queen("WQ","White_Queen.png",0);
-	bq=new Queen("BQ","Black_Queen.png",1);
-	wk=new King("WK","White_King.png",0,7,3);
-	bk=new King("BK","Black_King.png",1,0,3);
-	wp=new Pawn[8];
-	bp=new Pawn[8];
-	for(int i=0;i<8;i++)
-	{
-		wp[i]=new Pawn("WP0"+(i+1),"White_Pawn.png",0);
-		bp[i]=new Pawn("BP0"+(i+1),"Black_Pawn.png",1);
-	}
         
+        white = new AllPiece("White");
+        black = new AllPiece("Black");
+           
     }
     public static King getKing(int color)
 	{
-		if (color==0)
-			return wk;
+		if (color == white.getK().getcolor())
+			return white.getK();
 		else
-			return bk;
+			return black.getK();
 	}
     
     public static void createState(Main m,JPanel board ){
         pieces.Piece P;
         boardState = new Cell[8][8];
+        AllPiece first;
+        AllPiece second;
+        if(white.getK().getcolor()==0){
+            first = white;
+            second = black;
+        }
+        else{
+            first = black;
+            second = white;
+        }
     		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
 			{	
-				P=null;
-				if(i==0&&j==0)
-					P= br01;
-				else if(i==0&&j==7)
-					P=br02;
-				else if(i==7&&j==0)
-					P=wr01;
+				P = null;
+                                if(i==7&&j==0)
+					P= first.getR1();
 				else if(i==7&&j==7)
-					P=wr02;
-				else if(i==0&&j==1)
-					P=bk01;
-				else if (i==0&&j==6)
-					P=bk02;
+					P= first.getR2();
 				else if(i==7&&j==1)
-					P=wk01;
+					P= first.getKN1();
 				else if (i==7&&j==6)
-					P=wk02;
-				else if(i==0&&j==2)
-					P=bb01;
-				else if (i==0&&j==5)
-					P=bb02;
+					P= first.getKN2();
 				else if(i==7&&j==2)
-					P=wb01;
+					P= first.getB1();
 				else if(i==7&&j==5)
-					P=wb02;
-				else if(i==0&&j==3)
-					P=bk;
-				else if(i==0&&j==4)
-					P=bq;
+					P= first.getB2();
 				else if(i==7&&j==3)
-					P=wk;
+					P= first.getK();
 				else if(i==7&&j==4)
-					P=wq;
-				else if(i==1)
-                                        P=bp[j];
+					P= first.getQ();
 				else if(i==6)
-					P=wp[j];
+					P= first.getP()[j];
+                                
+                                else if(i==0&&j==0)
+					P= second.getR1();
+				else if(i==0&&j==7)
+					P= second.getR2();
+                                else if(i==0&&j==1)
+					P= second.getKN1();
+				else if (i==0&&j==6)
+					P= second.getKN2();
+                                else if(i==0&&j==3)
+					P= second.getK();
+				else if(i==0&&j==4)
+					P= second.getQ();
+                                else if(i==0&&j==2)
+					P= second.getB1();
+				else if (i==0&&j==5)
+					P= second.getB2();
+                                else if(i==1)
+                                        P= second.getP()[j];
 				Cell cell=new Cell(i,j,P);
 				cell.addMouseListener(m);
 				board.add(cell);

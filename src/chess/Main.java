@@ -36,9 +36,7 @@ public class Main extends JFrame implements MouseListener
 	private static final int Width=1110;
 	private Cell c,previous;
 	private int chance=0;
-	//private Cell boardState[][];
 	private ArrayList<Cell> destinationlist = new ArrayList<Cell>();
-        private static BoardChess boardchess;
 	private Player White=null,Black=null;
 	private JPanel board=new JPanel(new GridLayout(8,8));
 	private JPanel wdetails=new JPanel(new GridLayout(3,3));
@@ -137,9 +135,9 @@ public class Main extends JFrame implements MouseListener
 		
 		BlackPlayer=new JPanel();
 		BlackPlayer.setBorder(BorderFactory.createTitledBorder(null, "Black Player", TitledBorder.TOP,TitledBorder.CENTER, new Font("times new roman",Font.BOLD,18), Color.BLUE));
-	    BlackPlayer.setLayout(new BorderLayout());
+                BlackPlayer.setLayout(new BorderLayout());
 		
-	    JPanel whitestats=new JPanel(new GridLayout(3,3));
+                JPanel whitestats=new JPanel(new GridLayout(3,3));
 		JPanel blackstats=new JPanel(new GridLayout(3,3));
 		wcombo=new JComboBox<String>(WNames);
 		bcombo=new JComboBox<String>(BNames);
@@ -184,18 +182,18 @@ public class Main extends JFrame implements MouseListener
 		start=new Button("Start");
 		start.setBackground(Color.black);
 		start.setForeground(Color.white);
-	    start.addActionListener(new START());
+                start.addActionListener(new START());
 		start.setPreferredSize(new Dimension(120,40));
 		setTime.setFont(new Font("Arial",Font.BOLD,16));
 		label = new JLabel("Time Starts now", JLabel.CENTER);
-		  label.setFont(new Font("SERIF", Font.BOLD, 30));
-	      displayTime=new JPanel(new FlowLayout());
-	      time=new JPanel(new GridLayout(3,3));
-	      time.add(setTime);
-	      time.add(showPlayer);
-	      displayTime.add(start);
-	      time.add(displayTime);
-	      controlPanel.add(time);
+		label.setFont(new Font("SERIF", Font.BOLD, 30));
+                displayTime=new JPanel(new FlowLayout());
+                time=new JPanel(new GridLayout(3,3));
+                time.add(setTime);
+                time.add(showPlayer);
+                displayTime.add(start);
+                time.add(displayTime);
+                controlPanel.add(time);
 		board.setMinimumSize(new Dimension(800,700));
 		
 		//The Left Layout When Game is inactive
@@ -218,7 +216,7 @@ public class Main extends JFrame implements MouseListener
 		controlPanel.setMinimumSize(new Dimension(285,700));
 		split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,temp, controlPanel);
 		
-	    content.add(split);
+                content.add(split);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 	
